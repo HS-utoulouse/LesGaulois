@@ -33,7 +33,7 @@ public class Gaulois {
 
 	public void sePresenter() {
 		if (this.village == null) {
-			System.out.println("Bonjour, je m'appelle " + this.getNom() + "Je voyage de villages en villages");
+			System.out.println("Bonjour, je m'appelle " + this.getNom() + ". Je voyage de villages en villages");
 		} else if (this.village.getChef() == this) {
 			System.out.println("Bonjour, je m'appelle " + this.getNom() + ". Je suis le chef " + this.village.getNom());
 		} else {

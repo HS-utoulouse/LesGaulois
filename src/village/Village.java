@@ -13,6 +13,7 @@ public class Village {
 		this.nom = nom;
 		this.chef = chef;
 		this.villageois = new Gaulois[nbVillageoisMax];
+		this.chef.setVillage(this);
 	}
 
 	public String getNom() {
