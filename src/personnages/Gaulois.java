@@ -9,10 +9,16 @@ public class Gaulois {
 	private Village village = null;
 	private int effetPotion;
 
+	private Boolean isInvariantVerified() {
+		return force >= 0;
+	}
+
 	public Gaulois(String nom, int force) {
+		assert isInvariantVerified() : "Pré-Condition a la reception d'un coup";
 		this.force = force;
 		this.nom = nom;
 		this.effetPotion = 1;
+		assert isInvariantVerified() : "Invariant a la reception d'un coup";
 	}
 
 	public String getNom() {
@@ -50,6 +56,7 @@ public class Gaulois {
 			effetPotion--;
 		}
 		romain.recevoirCoup(forceCoup);
+		assert isInvariantVerified() : "Invariant a la reception d'un coup";
 	}
 
 	public void recevoirCoup(int forceCoup) {
