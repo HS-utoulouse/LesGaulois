@@ -29,8 +29,8 @@ public class Druide {
 		this.parler("J'ai concoté " + quantite + " doses de potion magique. Elle a une force de " + forcePotion + ".");
 	}
 
-	public void boosterGaulois(Gaulois gaulois) {
-		if (gaulois.getNom() == "Obélix") {
+	public void booster(Gaulois gaulois) {
+		if ("Obélix".equals(gaulois.getNom())) {
 			parler("Nom," + gaulois.getNom() + ", Non!...Et tu le sais trés bien !");
 		} else if (chaudron.resterPotion()) {
 			gaulois.boirePotion(chaudron.prendreLouche());

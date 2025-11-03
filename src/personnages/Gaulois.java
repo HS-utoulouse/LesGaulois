@@ -1,11 +1,15 @@
 package personnages;
 
+import objet.Equipement;
 import village.Village;
 
 public class Gaulois {
 
 	private String nom;
+//	private int force;
 	private int force;
+	private int nbTrophees;
+	private Equipement[] trophees = new Equipement[100];
 	private Village village = null;
 	private int effetPotion;
 
@@ -34,29 +38,39 @@ public class Gaulois {
 	}
 
 	private String prendreParole() {
-		return "Le Gaulois " + this.nom + " : ";
+		return "Le gaulois " + nom + " : ";
 	}
 
 	public void sePresenter() {
+
+		final String bj_je_m_appelle = "Bonjour, je m'appelle ";
+
 		if (this.village == null) {
-			System.out.println("Bonjour, je m'appelle " + this.getNom() + ". Je voyage de villages en villages");
+			System.out.println(bj_je_m_appelle + this.getNom() + ". Je voyage de villages en villages");
 		} else if (this.village.getChef() == this) {
-			System.out.println("Bonjour, je m'appelle " + this.getNom() + ". Je suis le chef " + this.village.getNom());
+			System.out.println(bj_je_m_appelle + this.getNom() + ". Je suis le chef " + this.village.getNom());
 		} else {
-			System.out.println(
-					"Bonjour, je m'appelle " + this.getNom() + ". J'habite le village " + this.village.getNom());
+			System.out.println(bj_je_m_appelle + this.getNom() + ". J'habite le village " + this.village.getNom());
 		}
 	}
 
+//	public void frapper(Romain romain) {
+//		String nomRomain = romain.getNom();
+//		System.out.println(nom + "envoie un grand coup dans la mêchoire de " + nomRomain);
+//		int forceCoup = (force * effetPotion) / 3;
+//		if (effetPotion != 1) {
+//			effetPotion--;
+//		}
+//		romain.recevoirCoup(forceCoup);
+//		assert isInvariantVerified() : "Invariant a la reception d'un coup";
+//	}
+
 	public void frapper(Romain romain) {
-		String nomRomain = romain.getNom();
-		System.out.println(nom + "envoie un grand coup dans la mêchoire de " + nomRomain);
-		int forceCoup = (force * effetPotion) / 3;
-		if (effetPotion != 1) {
-			effetPotion--;
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
+		Equipement[] romainTrophees = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; romainTrophees != null && i < romainTrophees.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = romainTrophees[i];
 		}
-		romain.recevoirCoup(forceCoup);
-		assert isInvariantVerified() : "Invariant a la reception d'un coup";
 	}
 
 	public void recevoirCoup(int forceCoup) {

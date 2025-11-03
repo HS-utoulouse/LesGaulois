@@ -36,8 +36,8 @@ public class MainGaulois {
 
 		Panoramix.fabriquerPotion(4, 3);
 
-		Panoramix.boosterGaulois(Obelix);
-		Panoramix.boosterGaulois(Asterix);
+		Panoramix.booster(Obelix);
+		Panoramix.booster(Asterix);
 		
 		System.out.println("=================================================");
 
