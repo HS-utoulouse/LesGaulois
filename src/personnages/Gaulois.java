@@ -87,26 +87,25 @@ public class Gaulois {
 	public void boirePotion(int forcePotion) {
 		effetPotion = forcePotion;
 	}
-	
-	public void faireUneDonnation(Musee musee) {
-	    if (nbTrophees > 0) {
-	        System.out.println("Le gaulois " + getNom() + " : « Je donne au musee tous mes trophées :");
-	        for (int i = 0; i < nbTrophees; i++) {
-	            System.out.println("- " + trophees[i].getNom());
-	            musee.donnerTrophees(this, trophees[i]);
-	        }
-	        nbTrophees = 0;
-	    } else {
-	        System.out.println("Le gaulois " + getNom() + " n'a aucun trophée à donner.");
-	    }
-	}
 
+	public void faireUneDonnation(Musee musee) {
+		if (nbTrophees > 0) {
+			System.out.println("Le gaulois " + getNom() + " : Je donne au musee tous mes trophées :");
+			for (int i = 0; i < nbTrophees; i++) {
+				System.out.println("- " + trophees[i].getNom());
+				musee.donnerTrophees(this, trophees[i]);
+			}
+			nbTrophees = 0;
+		} else {
+			System.out.println("Le gaulois " + getNom() + " n'a aucun trophée à donner.");
+		}
+	}
 
 	@Override
 	public String toString() {
 		return nom;
 	}
-	
+
 	public static void main(String[] args) {
 		int forceAsterix = 8;
 		int forceObelix = 16;
@@ -117,11 +116,11 @@ public class Gaulois {
 		Gaulois Asterix = new Gaulois("Asterix", forceAsterix);
 
 		Gaulois Obelix = new Gaulois("Obélix", forceObelix);
-		
+
 		Asterix.parler("Bonjour Obélix.");
 		Obelix.parler("Bonjour Astérix. Ca te dirais d'aller chasser des sangliers ?)");
 		Asterix.parler("Oui très bonne idée.");
-		
+
 		System.out.println("=================================================");
 
 		Romain Minus = new Romain("Minus", forceMinus);
@@ -131,9 +130,9 @@ public class Gaulois {
 		for (int i = 0; i < 3; i++) {
 			Asterix.frapper(Minus);
 		}
-		
+
 		System.out.println("=================================================");
-		
+
 		Romain Brutus = new Romain("Brutus", forceBrutus);
 
 		Druide Panoramix = new Druide("Panoramix", forcePanoramix);
@@ -142,13 +141,25 @@ public class Gaulois {
 
 		Panoramix.booster(Obelix);
 		Panoramix.booster(Asterix);
-		
+
 		System.out.println("=================================================");
 
 		for (int i = 0; i < 3; i++) {
 			Asterix.frapper(Brutus);
 		}
+		System.out.println("=================================================\n");
+
+		Asterix.trophees[0] = Equipement.BOUCLIER;
+		Asterix.trophees[1] = Equipement.CASQUE;
+		Asterix.trophees[2] = Equipement.CASQUE;
+		Asterix.nbTrophees = 3;
+
+		Musee Athène = new Musee();
+
+		Asterix.faireUneDonnation(Athène);
+
+		System.out.println("\n");
+
+		System.out.print(Athène.extraireInstructionsOCaml());
 	}
 }
-
-

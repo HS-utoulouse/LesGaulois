@@ -23,4 +23,14 @@ public class Musee {
 			System.out.println("Le musée est plein, impossible d'ajouter plus de trophées !");
 		}
 	}
+
+	public String extraireInstructionsOCaml() {
+		String texte = "let musee = [\n";
+
+		for (int i = 0; i < nbTrophee; i++) {
+			texte += "\t\"" + trophees[i].donnerNom() + "\", \"" + trophees[i].getEquipement() + "\";\n";
+		}
+
+		return texte + "]";
+	}
 }
