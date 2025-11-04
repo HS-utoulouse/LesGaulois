@@ -2,11 +2,11 @@ package personnages;
 
 import objet.Equipement;
 import village.Village;
+import village.Musee;
 
 public class Gaulois {
 
 	private String nom;
-//	private int force;
 	private int force;
 	private int nbTrophees;
 	private Equipement[] trophees = new Equipement[100];
@@ -87,10 +87,68 @@ public class Gaulois {
 	public void boirePotion(int forcePotion) {
 		effetPotion = forcePotion;
 	}
+	
+	public void faireUneDonnation(Musee musee) {
+	    if (nbTrophees > 0) {
+	        System.out.println("Le gaulois " + getNom() + " : « Je donne au musee tous mes trophées :");
+	        for (int i = 0; i < nbTrophees; i++) {
+	            System.out.println("- " + trophees[i].getNom());
+	            musee.donnerTrophees(this, trophees[i]);
+	        }
+	        nbTrophees = 0;
+	    } else {
+	        System.out.println("Le gaulois " + getNom() + " n'a aucun trophée à donner.");
+	    }
+	}
+
 
 	@Override
 	public String toString() {
 		return nom;
 	}
+	
+	public static void main(String[] args) {
+		int forceAsterix = 8;
+		int forceObelix = 16;
+		int forceMinus = 6;
+		int forceBrutus = 14;
+		int forcePanoramix = 2;
 
+		Gaulois Asterix = new Gaulois("Asterix", forceAsterix);
+
+		Gaulois Obelix = new Gaulois("Obélix", forceObelix);
+		
+		Asterix.parler("Bonjour Obélix.");
+		Obelix.parler("Bonjour Astérix. Ca te dirais d'aller chasser des sangliers ?)");
+		Asterix.parler("Oui très bonne idée.");
+		
+		System.out.println("=================================================");
+
+		Romain Minus = new Romain("Minus", forceMinus);
+
+		System.out.println("Dans la forêt " + Asterix + " et " + Obelix + " tombent nez à nez sur le romain Minus");
+
+		for (int i = 0; i < 3; i++) {
+			Asterix.frapper(Minus);
+		}
+		
+		System.out.println("=================================================");
+		
+		Romain Brutus = new Romain("Brutus", forceBrutus);
+
+		Druide Panoramix = new Druide("Panoramix", forcePanoramix);
+
+		Panoramix.fabriquerPotion(4, 3);
+
+		Panoramix.booster(Obelix);
+		Panoramix.booster(Asterix);
+		
+		System.out.println("=================================================");
+
+		for (int i = 0; i < 3; i++) {
+			Asterix.frapper(Brutus);
+		}
+	}
 }
+
+

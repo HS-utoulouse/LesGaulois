@@ -1,6 +1,7 @@
 package histoires;
 
 import personnages.Druide;
+
 import objet.Equipement;
 import personnages.Gaulois;
 import personnages.Romain;

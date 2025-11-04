@@ -1,4 +1,4 @@
-package personnages;
+package objet;
 
 public class Chaudron {
 
